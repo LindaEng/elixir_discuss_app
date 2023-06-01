@@ -16,6 +16,9 @@ defmodule DiscussWeb do
   below. Instead, define any helper function in modules
   and import those modules here.
   """
+  defmacro __using__(which) when is_atom(which) do
+    apply(__MODULE__, which, [])
+  end
 
   def controller do
     quote do
