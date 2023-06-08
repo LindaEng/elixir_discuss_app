@@ -2,6 +2,7 @@ defmodule DiscussWeb.TopicController do
   use DiscussWeb, :controller
   alias DiscussWeb.Router.Helpers, as: Routes
   alias Discuss.Topic
+  alias Discuss.Repo
 
 
   def new(conn, _params) do
@@ -11,6 +12,14 @@ defmodule DiscussWeb.TopicController do
     # text conn, "THIS TOPIC CONTROLLER ENDPOINT WORKS - #{Mix}"
   end
 
-  #write a function that adds two numbers and name the function sum of two numbers
+  def create(conn, %{"topic" => topic_params}) do
+    changeset = Topic.changeset(%Topic{}, topic_params)
+
+    case Repo.insert(changeset) do
+      {:ok, post} -> IO.inspect(post)
+      {:error, changeset} ->
+        render conn, "new.html", changeset: changeset
+    end
+  end
 
 end

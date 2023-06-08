@@ -3,12 +3,12 @@ defmodule Discuss.Topic do
   import Ecto.Changeset
 
   schema "topics" do
-    field :email, :string
+    field :title, :string
   end
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email])
-    |> validate_required(([:email]))
+    |> cast(params, [:title])
+    |> validate_required(([:title]))
   end
 end
