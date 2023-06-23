@@ -7,6 +7,7 @@
 # General application configuration
 import Config
 
+
 config :discuss,
   ecto_repos: [Discuss.Repo]
 
@@ -29,6 +30,11 @@ config :discuss, Discuss.Mailer, adapter: Swoosh.Adapters.Local
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
+# Configure enviornment variables
+config :dotenv,
+  path: ".env",
+  load_dotenv: Mix.env() != :prod
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.14.29",
@@ -50,3 +56,13 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+
+config :ueberaauth, Ueberauth,
+  providers: [
+    github: { Ueberauth.Strategy.Github, [] }
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Github.Oauth,
+  client_id: System.get_env("CLIENT_ID"),
+  client_secret: System.get_env("CLIENT_SECRET")
