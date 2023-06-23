@@ -58,7 +58,7 @@ config :phoenix, :json_library, Jason
 import_config "#{config_env()}.exs"
 
 
-config :ueberaauth, Ueberauth,
+config :ueberauth, Ueberauth,
   providers: [
     github: { Ueberauth.Strategy.Github, [] }
   ]

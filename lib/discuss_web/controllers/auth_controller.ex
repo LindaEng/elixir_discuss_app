@@ -1,5 +1,5 @@
-defmodule Discuss.AuthController do
-  use Discuss.Web, :controller
+defmodule DiscussWeb.AuthController do
+  use DiscussWeb, :controller
   plug Ueberauth
 
   def callback(conn, params) do
@@ -8,5 +8,7 @@ defmodule Discuss.AuthController do
     IO.puts("+++++")
     IO.inspect(params)
     IO.puts("+++++")
+
+    conn
   end
 end
