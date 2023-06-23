@@ -24,8 +24,15 @@ defmodule DiscussWeb.Router do
     # get "/topics/:id/edit", TopicController, :edit
     # put "/topics/:id", TopicController, :update
 
-    #built in helper by phoenix
+    #built in helper by phoenix - follows RESTful conventions
     resources "/", TopicController
+  end
+
+  scope "/auth" DiscussWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
