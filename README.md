@@ -29,7 +29,6 @@ These instructions will get you a copy of the project up and running on your loc
    ```
 2. Navigate into the project directory:
 
-Copy code
   ```sh
 cd YOUR_REPOSITORY_NAME
   ```
