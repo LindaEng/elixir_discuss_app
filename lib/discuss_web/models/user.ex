@@ -1,6 +1,6 @@
 defmodule Discuss.User do
   use Ecto.Schema
-  import Ecto.Changset
+  import Ecto.Changeset
 
   schema "users" do
     field :email, :string
