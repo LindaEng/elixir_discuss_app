@@ -7,7 +7,6 @@
 # General application configuration
 import Config
 
-
 config :discuss,
   ecto_repos: [Discuss.Repo]
 
@@ -66,3 +65,6 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("CLIENT_ID"),
   client_secret: System.get_env("CLIENT_SECRET")
+
+  IO.inspect(System.get_env("CLIENT_ID"))
+  IO.inspect(System.get_env("CLIENT_SECRET"))
