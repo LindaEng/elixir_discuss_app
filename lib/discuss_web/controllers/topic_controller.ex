@@ -19,7 +19,9 @@ defmodule DiscussWeb.TopicController do
   end
 
   def create(conn, %{"topic" => topic_params}) do
-    changeset = Topic.changeset(%Topic{}, topic_params)
+    changeset = conn.assigns.user
+    |> Ecto.build_assoc(:topics)
+    |> Topic.changeset(topic_params)
 
     case Repo.insert(changeset) do
       {:ok, _topic} ->
@@ -61,7 +63,7 @@ defmodule DiscussWeb.TopicController do
         conn
         |> put_flash(:info, "Topic deleted successfully!")
         |> redirect(to: Routes.topic_path(conn, :index))
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
         |> put_flash(:error, "Failed to delete topic")
         |> redirect(to: Routes.topic_path(conn, :index))
