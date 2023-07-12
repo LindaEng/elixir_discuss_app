@@ -4,7 +4,9 @@ defmodule DiscussWeb.UserSocket do
   channel "comments:*", Discuss.CommentsChannel
 
   @impl true
-  def connect(_params, socket, _connect_info) do
+  def connect(%{"token" => token}, socket, _connect_info) do
+    IO.puts("THIS IS THE TOKEN ++++++")
+    IO.puts(token)
     {:ok, socket}
   end
 
